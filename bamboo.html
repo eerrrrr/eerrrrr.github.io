@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D-Printed Bamboo System - Erin Wong</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="detail-page-body">
+
+    <nav class="detail-nav">
+        <div class="detail-nav-left">
+            <a href="index.html" class="detail-logo">ERIN.</a>
+        </div>
+        <div class="detail-nav-center">
+        </div>
+        <div class="detail-nav-right">
+            <a href="index.html" class="nav-text-link">HOME</a>
+        </div>
+    </nav>
+
+    <div class="vertical-layout-container">
+
+        <main class="vertical-gallery-content">
+            
+            <div class="project-hero-split" data-aos="zoom-in" data-aos-duration="1200">
+                <img src="bamboo/hero.jpg" alt="3D-Printed Bamboo System Overview">
+            </div>
+
+            <div class="content-wrapper">
+                
+                <div class="text-block-row" data-aos="fade-up">
+                    <h3>Design Logic</h3>
+                    <div>
+                        <p>
+                            Bamboo scaffolding works because it accepts uncertainty. Poles vary in diameter, surfaces are irregular, and the structure is assembled quickly with tools and judgement rather than precise parts. Yet the system remains stable because the joint is not a single rigid fastener. It is a process: wrapping, tightening, building pressure, and letting friction lock the connection.
+                        </p>
+                        <p>
+                            The project begins by treating that “manual intelligence” as something that can be translated into rules. The first step is to extract what the knot actually does mechanically: tension becomes radial pressure, radial pressure increases contact, and contact becomes frictional lock. The work reformulates this behaviour into parameters that a 3D-printed component can control: overlap length, diameter tolerance, and constraint force.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-block two-col">
+                    <div data-aos="fade-up">
+                        <img src="bamboo/logic-1.jpg" alt="Traditional vs Digital Logic">
+                        <p class="caption">Translating manual knot logic into digital parameters.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <img src="bamboo/logic-2.jpg" alt="Friction Analysis">
+                        <p class="caption">Analysis of friction and locking mechanics.</p>
+                    </div>
+                </div>
+
+                <div class="text-block-row" data-aos="fade-up">
+                    <h3>Joint System</h3>
+                    <div>
+                        <p>
+                            At the centre of the thesis is the node (Box Node), designed as a rigid component that reproduces friction-based locking through geometry rather than straps. The node replaces the manual zipper/lashing action with a mechanical tightening sequence made of two parts: a central hub and a compression cap.
+                        </p>
+                        <p>
+                            Inside the node, ribbed surfaces increase friction and create tolerance. Instead of assuming a fixed diameter, the node is shaped to accommodate variation and still hold tightly. This is the key shift of the project: the joint does not demand perfect material; the geometry is built to accept natural irregularity and still remain readable and repeatable to assemble.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-block three-col">
+                    <div data-aos="fade-up">
+                        <img src="bamboo/node-1.jpg" alt="Node Explosion">
+                        <p class="caption">Exploded view of the Box Node components.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <img src="bamboo/node-2.jpg" alt="Ribbed Surface">
+                        <p class="caption">Ribbed surfaces designed to grip irregular bamboo.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <img src="bamboo/node-3.jpg" alt="Assembly Prototype">
+                        <p class="caption">Physical prototype showing the locking mechanism.</p>
+                    </div>
+                </div>
+
+                <div class="text-block-row" data-aos="fade-up">
+                    <h3>From Node to Pavilion</h3>
+                    <div>
+                        <p>
+                            The pavilion is used as the proof that the node system is not only a component, but an architectural language. Instead of a single fixed shape, it is generated through a continuous rule chain:
+                        </p>
+                        <ul style="padding-left: 20px; color: #444; margin: 10px 0;">
+                            <li>Scenario inputs define the site boundary and entrances.</li>
+                            <li>These are translated into an intensity field describing compression or release.</li>
+                            <li>The field drives grid density, structural spacing, and roof profile.</li>
+                        </ul>
+                        <p>
+                            This “node-to-field” logic makes the project legible. High-intensity zones produce denser structure and stronger articulation; low-intensity zones stay lighter and more open. Rhythm is produced by accumulation, creating visible shifts in posture and attachment behaviour across the structure.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-block full-width" data-aos="fade-up">
+                    <img src="bamboo/pavilion-render.jpg" alt="Pavilion Design">
+                    <p class="caption">Pavilion design generated from the intensity field logic.</p>
+                </div>
+
+                <div class="text-block-row" data-aos="fade-up">
+                    <h3>Method & Reflection</h3>
+                    <div>
+                        <p>
+                            This thesis demonstrates a design method that moves cleanly across scales: material behaviour becomes mechanical logic, mechanical logic becomes geometry, geometry becomes a repeatable system, and the system becomes architecture.
+                        </p>
+                        <p>
+                            The project builds a chain of reasoning where each decision supports constructability, tolerance, and spatial readability. The output is a framework for bamboo-based structures that can be digitally produced, easy to assemble, and still grounded in the intelligence of traditional scaffolding.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-block full-width" data-aos="fade-up">
+                    <img src="bamboo/final-model.jpg" alt="Final Prototype Model">
+                    <p class="caption">Pavilion-scale prototype demonstrating the system in context.</p>
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <aside class="project-info-sidebar">
+            <div class="sidebar-scroll-content">
+                <div class="info-content">
+                    <h1 class="sidebar-title">3D-Printed Bamboo Components System</h1>
+                    <div class="sidebar-description">
+                        <p>
+                            This project develops a buildable system that translates bamboo scaffolding logic into a digitally fabricated joint-and-frame language.                        
+                            Focuses on friction-based locking and tolerance for irregular poles. The result is a 3D-printed node system that connects bamboo poles.
+                        </p>
+                    </div>
+                    <div class="meta-block">
+                        <div class="meta-data">
+                            <p><strong>Year</strong> 2025</p>
+                            <p><strong>Type</strong> Master Thesis / Individual</p>                           
+                            <p><strong>Location</strong> Helsinki, Finland</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-bottom-group">
+                    <div class="skills-content">
+                        <div class="skills-header">PROJECT SKILLS</div>
+                        <div class="skill-tags">
+                            <span class="skill-pill">Grasshopper</span>
+                            <span class="skill-pill">3D Printing</span>
+                            <span class="skill-pill">Structural Logic</span>
+                            <span class="skill-pill">Prototyping</span>
+                        </div>
+                    </div>
+                    <div class="info-tags-list">
+                        <span>#3DPrinting</span>
+                        <span>#Bamboo</span>
+                        <span>#Structure</span>
+                        <span>#System</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-next-project-container">
+                <a href="cultural-center.html" class="next-work-link">↙ Previous Work</a>
+                <a href="vault-house.html" class="next-work-link">Next Work ↘</a>
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 50,
+            duration: 1000,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+    </script>
+</body>
+</html>
