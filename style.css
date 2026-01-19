@@ -280,52 +280,57 @@ a:hover { color: var(--green-accent); }
 
 
 /* --- [圖片佈局核心設定：統一高度 + 文字在下] --- */
+/* --- [圖片佈局核心設定：統一高度 + 文字在下] --- */
 
 /* 1. 圖片統一設定 */
 .gallery-block img { 
     width: 100%; 
     display: block; 
     border-radius: 4px; 
-    /* 核心修改：完整顯示，不裁切，白底 */
+    /* 完整顯示，不裁切，白底 */
     object-fit: contain;     
     object-position: center; 
     background-color: #ffffff; 
-    margin-bottom: 10px; /* 圖片與下方說明的間距 */
+    margin-bottom: 10px; 
 }
 
 /* 2. 欄位佈局容器 */
 .two-col, .three-col, .four-col { 
     display: grid; 
     gap: 40px; 
-    align-items: start; /* 對齊頂部，讓不同長度的文字自然延伸 */
+    align-items: start; 
 }
 
-/* 3. 格子內的 Item 容器 (包含 img + p) */
+/* 3. 格子內的 Item 容器 */
 .two-col > div, 
 .three-col > div, 
 .four-col > div {
     display: flex;
-    flex-direction: column; /* 強制垂直排列：圖在上，文在下 */
+    flex-direction: column; 
     width: 100%;
-    overflow: visible;      /* 確保文字不會被切掉 */
+    overflow: visible;      
     background: transparent;
-    aspect-ratio: auto;     /* 移除容器的強制比例，讓文字自然撐開 */
+    aspect-ratio: auto;     
 }
 
-/* 4. 將固定比例應用在「圖片」本身，而非容器 */
+/* 4. [修改處] 增加圖片高度比例 */
+
 .two-col img {
     width: 100%;
-    aspect-ratio: 3 / 2; /* 圖片區域固定 3:2 */
+    /* 原本是 3/2 (扁長)，改為 1/1 (正方形)，讓圖片有更多垂直空間 */
+    aspect-ratio: 3 / 4; 
 }
 
 .three-col img {
     width: 100%;
-    aspect-ratio: 4 / 3; /* 圖片區域固定 4:3 */
+    /* 原本是 4/3，改為 1/1 (正方形)，讓三欄的小圖也能變大 */
+    aspect-ratio: 3 / 4; 
 }
 
 .four-col img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* 圖片區域固定 1:1 */
+    /* 四欄通常圖很小，改為 4/5 (直式) 讓它更高一點，看清細節 */
+    aspect-ratio: 4 / 5; 
 }
 
 /* 5. 欄位數定義 */
