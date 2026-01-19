@@ -34,10 +34,10 @@
                     <h3>Design Logic</h3>
                     <div>
                         <p>
-                            Bamboo scaffolding works because it accepts uncertainty. Poles vary in diameter, surfaces are irregular, and the structure is assembled quickly with tools and judgement rather than precise parts. Yet the system remains stable because the joint is not a single rigid fastener. It is a process: wrapping, tightening, building pressure, and letting friction lock the connection. That sequence produces two key qualities at once: strong resistance against slipping, and small controlled movement under load that prevents brittle failure.
+                            Bamboo scaffolding works because it accepts uncertainty. Poles vary in diameter, surfaces are irregular, and the structure is assembled quickly with tools and judgement rather than precise parts. Yet the system remains stable because the joint is not a single rigid fastener. It is a process: wrapping, tightening, building pressure, and letting friction lock the connection.
                         </p>
                         <p>
-                            The project begins by treating that “manual intelligence” as something that can be translated into rules. The first step is to extract what the knot actually does mechanically: tension becomes radial pressure, radial pressure increases contact, and contact becomes frictional lock. The work reformulates this behaviour into parameters that a 3D-printed component can control: overlap length (L), diameter tolerance (ΔD), and constraint force (F).
+                            The project begins by treating that “manual intelligence” as something that can be translated into rules. The first step is to extract what the knot actually does mechanically: tension becomes radial pressure, radial pressure increases contact, and contact becomes frictional lock. The work reformulates this behaviour into parameters that a 3D-printed component can control.
                         </p>
                     </div>
                 </div>
@@ -45,34 +45,24 @@
                 <div class="gallery-block full-width" data-aos="fade-up">
                     <img src="bamboo/workflow-diagram.png" alt="Parametric Workflow">
                     <p class="caption">Design Workflow: Translating manual knot logic into digital parameters.</p>
-                </div>
+                </div>        
 
                 <div class="text-block-row" data-aos="fade-up">
                     <h3>Joint System</h3>
                     <div>
                         <p>
-                            At the centre of the thesis is the node (Box Node), designed as a rigid component that reproduces friction-based locking through geometry rather than straps. The node replaces the manual zipper/lashing action with a mechanical tightening sequence made of two parts: a central hub and a compression cap. During assembly, the hub provides alignment and a stable reference, while the cap applies controlled compression.
+                            At the centre of the thesis is the node (Box Node), designed as a rigid component that reproduces friction-based locking through geometry rather than straps. The node replaces the manual zipper / lashing action with a mechanical tightening sequence made of two parts: a central hub and a compression cap.
                         </p>
                         <p>
-                            Inside the node, ribbed surfaces increase friction and create tolerance. Instead of assuming a fixed diameter, the node is shaped to accommodate variation and still hold tightly. This is the key shift of the project: the joint does not demand perfect material; the geometry is built to accept natural irregularity and still remain readable and repeatable to assemble.
+                            The lock is created by selected zones of pressure, not by uniform clamping everywhere. This matters because bamboo is not perfectly round, and forcing uniform compression would either fail to grip or damage the material.
                         </p>
                     </div>
                 </div>
 
-                <div class="gallery-block four-col" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                    <div data-aos="fade-up" data-aos-delay="0"><img src="bamboo/axo-joint-1.jpg" alt="Assembly Step 1"></div>
-                    <div data-aos="fade-up" data-aos-delay="100"><img src="bamboo/axo-joint-2.jpg" alt="Assembly Step 2"></div>
-                    <div data-aos="fade-up" data-aos-delay="200"><img src="bamboo/axo-joint-3.jpg" alt="Assembly Step 3"></div>
-                    <div data-aos="fade-up" data-aos-delay="300"><img src="bamboo/axo-joint-4.jpg" alt="Assembly Step 4"></div>
+                <div class="gallery-block full-width" data-aos="fade-up">
+                    <img src="bamboo/0037.jpg" alt="Physical Node Components">
+                    <p class="caption">Physical Components: A set of 3D-printed node components revealing the internal locking geometry and modular interfaces used to connect bamboo members.</p>
                 </div>
-                <p class="caption" style="margin-top: 5px; margin-bottom: 30px;">Axonometric Assembly Sequence: Locking the X, Y, and Z axes.</p>
-
-                <div class="gallery-block three-col">
-                    <div data-aos="fade-up"><img src="bamboo/joint-1.png" alt="Plan Detail"></div>
-                    <div data-aos="fade-up" data-aos-delay="100"><img src="bamboo/joint-2.png" alt="Section Detail"></div>
-                    <div data-aos="fade-up" data-aos-delay="200"><img src="bamboo/joint-3.png" alt="Elevation Detail"></div>
-                </div>
-                <p class="caption" style="margin-top: 5px; margin-bottom: 30px;">Technical Orthographics: Defining the clamp tolerances.</p>
 
                 <div class="gallery-block two-col">
                     <div data-aos="fade-up"><img src="bamboo/ViewCapture20251228_041603.png" alt="Digital Model Detail 1"></div>
@@ -85,13 +75,32 @@
                 <p class="caption" style="margin-top: 5px; margin-bottom: 30px;">Geometry Analysis: Close-ups of the ribbed locking mechanism.</p>
 
                 <div class="text-block-row" data-aos="fade-up">
+                    <h3>Technical Evolution</h3>
+                    <div>
+                        <p>
+                            Inside the node, ribbed surfaces increase friction and also create tolerance. Instead of assuming a fixed diameter, the node is shaped to accommodate variation and still hold tightly. The rib system increases contact area where grip is needed, while allowing slight adjustment where bamboo diameter changes.
+                        </p>
+                        <p>
+                            This is the key shift of the project: the joint does not demand perfect material; the geometry is built to accept natural irregularity and still remain readable and repeatable to assemble.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="gallery-block three-col">
+                    <div data-aos="fade-up"><img src="bamboo/joint-1.png" alt="Plan Detail"></div>
+                    <div data-aos="fade-up" data-aos-delay="100"><img src="bamboo/joint-2.png" alt="Section Detail"></div>
+                    <div data-aos="fade-up" data-aos-delay="200"><img src="bamboo/joint-3.png" alt="Elevation Detail"></div>
+                </div>
+                <p class="caption" style="margin-top: 5px; margin-bottom: 30px;">Technical Orthographics: Defining the clamp tolerances.</p>
+
+                <div class="text-block-row" data-aos="fade-up">
                     <h3>Method & Construction</h3>
                     <div>
                         <p>
                             This thesis demonstrates a design method that moves cleanly across scales: material behaviour becomes mechanical logic, mechanical logic becomes geometry, geometry becomes a repeatable system, and the system becomes architecture.
                         </p>
                         <p>
-                            Another important decision is that the joint is not hidden. In scaffolding, the tie is visible and the structure is understood through its connections. This project keeps that clarity. The node becomes a spatial element, not only a technical detail. That means the system can be read by users and builders: where connections become denser, the space becomes more compact.
+                            Another important decision is that the joint is not hidden. In scaffolding, the tie is visible and the structure is understood through its connections. This project keeps that clarity. The node becomes a spatial element, not only a technical detail.
                         </p>
                     </div>
                 </div>
@@ -118,11 +127,25 @@
                             <li>These are translated into an intensity field describing compression or release.</li>
                             <li>The field drives grid density, structural spacing, and roof profile.</li>
                             <li>Voids and clearances are carved for paths and gathering pockets.</li>
+                            <li>A roof profile is generated as a response to the same field.</li>
                         </ul>
-                        <p>
-                            This “node-to-field” logic makes the project legible. High-intensity zones produce denser structure and stronger articulation; low-intensity zones stay lighter and more open. Rhythm is produced by accumulation, creating visible shifts in posture and attachment behaviour across the structure.
-                        </p>
                     </div>
+                </div>
+
+                 <div class="gallery-block full-width" data-aos="fade-up">
+                        <img src="bamboo/Canvas at 14;45;40 1.png" alt="Grasshopper Definition">
+                        <p class="caption">Computational Logic: The Grasshopper definition managing scenario inputs and node generation.</p>
+                </div>
+                   
+                <!-- <div class="gallery-block full-width" data-aos="fade-up">
+                        <img src="bamboo/1-0025.jpg" alt="Geometric Generation Stages">
+                        <p class="caption">Geometric Realization: From physical tendencies (Stage 0) to final distortion fields (Stage 3).</p>
+                </div>
+                 -->
+
+                <div class="gallery-block full-width" data-aos="fade-up">
+                    <img src="bamboo/0029.jpg" alt="Matrix of Configuration">
+                    <p class="caption">Configuration Matrix: Adapting the system to six different urban scenarios.</p>
                 </div>
 
                 <div class="text-block-row" data-aos="fade-up">
@@ -169,7 +192,7 @@
                     <h1 class="sidebar-title">3D-Printed Bamboo Components System</h1>
                     <div class="sidebar-description">
                         <p>
-                            This project develops a buildable construction system that translates bamboo scaffolding logic into a digitally fabricated joint-and-frame language. The work focuses on what makes bamboo scaffolding perform friction-based locking.
+                            This project developed a constructible structural system that translates the logic of bamboo scaffolding into a digitally manufactured node framework language. The project focuses on the performance elements of bamboo scaffolding with friction-based.
                         </p>
                     </div>
                     <div class="meta-block">
@@ -177,6 +200,7 @@
                             <p><strong>Year</strong> 2025</p>
                             <p><strong>Type</strong> Master Thesis</p>                            
                             <p><strong>Location</strong> Helsinki, Finland</p>
+                            <!-- <p><strong>Focus</strong> Joint System </p> -->
                         </div>
                     </div>
                 </div>
@@ -188,11 +212,13 @@
                             <span class="skill-pill">Grasshopper</span>
                             <span class="skill-pill">3D Printing</span>
                             <span class="skill-pill">System Design</span>
+                            <span class="skill-pill">Prototyping</span>
                         </div>
                     </div>
                     <div class="info-tags-list">
                         <span>#Bamboo</span>
                         <span>#DigitalFabrication</span>
+                        <span>#Architecture</span>
                     </div>
                 </div>
             </div>
