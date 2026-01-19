@@ -57,7 +57,7 @@
         --hero-pad-right: 20px;
         --content-pad-left: 20px;
         --content-pad-right: 20px;
-        --hero-height: 30vh; /* 手機版 Hero 高度降低 */
+        --hero-height: 30vh; 
         --hero-pad-vertical: 20px; 
         --hero-content-gap: 30px;
     }
@@ -99,7 +99,7 @@ a:hover { color: var(--green-accent); }
 
 /* Hero */
 .hero-poster {
-    height: 100vh; /* 使用 dvh 支援新瀏覽器，fallback 100vh */
+    height: 100vh; 
     height: 100dvh; 
     display: flex; justify-content: center; align-items: center;
     position: relative; background: var(--green-bg); z-index: 20; overflow: hidden;
@@ -252,25 +252,20 @@ a:hover { color: var(--green-accent); }
 .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
 .caption { color: var(--text-color-light); font-size: var(--text-size-caption); margin-top: 10px; font-style: italic; text-align: left; }
 
-/* [正確的文字排版] 左右並排 */
 .text-block-row { 
     display: flex; justify-content: space-between; align-items: flex-start;
     width: 100%; max-width: 100%; margin: 80px 0 80px 0; 
 }
 .text-block-row h3 { 
-    width: 30%; /* 左側標題 */
+    width: 30%; 
     font-size: var(--text-size-h3); margin-top: 0; color: #000; line-height: 1.2;
 }
-
-/* [關鍵修正] 右側文字容器 */
 .text-block-row > div {
-    width: 65%; /* 確保容器佔右側寬度 */
-    display: flex; flex-direction: column; gap: 1.5rem; /* 段落間距 */
+    width: 65%; 
+    display: flex; flex-direction: column; gap: 1.5rem; 
 }
-
-/* [關鍵修正] 內文段落 */
 .text-block-row p { 
-    width: 100%; /* 填滿容器 */
+    width: 100%; 
     font-size: var(--text-size-body); line-height: var(--line-height-body); color: var(--text-color-body); margin: 0;
     text-align: justify; text-justify: inter-word;  
 }
@@ -281,51 +276,56 @@ a:hover { color: var(--green-accent); }
 .img-focus-left { object-position: center left !important; }
 .img-focus-right { object-position: center right !important; }
 
+
+/* =========================================
+   RWD 手機/平板 調整區域
+   ========================================= */
+
 @media (max-width: 1024px) {
     .top-bar { padding: 20px 20px; }
     .hero-bottom-nav { padding-left: 20px; padding-right: 20px; }
-    
-    /* 1024px 平板模式仍保持原樣，或稍微調整 padding */
     .bio-content { padding-left: 30px; padding-right: 30px; }
     .skills-content { width: 100%; min-width: auto; padding-left: 30px; padding-right: 30px; }
-    
     .gallery-content { padding-left: 5%; padding-right: 5%; }
     .split-container { flex-direction: column-reverse; }
     .vertical-layout-container { flex-direction: column-reverse; padding-top: 60px; }
     .sticky-sidebar { width: 100%; min-width: auto; height: auto; position: relative; padding: 40px 40px; border-left: none; }
     .sidebar-scroll-content { padding-left: 0; padding-right: 0; }
     .project-info-sidebar { width: 100%; min-width: auto; height: auto; position: relative; top: 0; padding: 40px 20px; }
-    
-    /* 平板時暫時保持高度 */
     .project-hero-split { min-height: 50vh; padding: 40px 20px; }
     .content-wrapper { padding: 40px 20px; }
     .two-col, .three-col { grid-template-columns: 1fr; gap: 40px; }
-    
     .text-block-row { flex-direction: column; }
     .text-block-row h3 { width: 100%; margin-bottom: 15px; }
     .text-block-row > div { width: 100%; } 
-    
     .detail-nav { padding: 20px; }
     .bio-section { padding: 60px 30px; }
     .sidebar-next-project-container { text-align: center; }
 }
 
 @media (max-width: 768px) {
+    /* 字體修正 */
     .poster-content h1 { font-size: 2.5rem; letter-spacing: -1px; }
 
-    /* [手機修正 1] Bio 和 Skills 垂直堆疊，避免擠壓 */
+    /* [首頁修正 1] 隱藏 Architecture/Creative/Design 文字，只留 Scroll */
+    .hero-bottom-nav .big-text {
+        display: none;
+    }
+
+    /* [首頁修正 2] Bio 和 Skills 垂直堆疊 */
     .bio-grid { 
+        display: flex;
         flex-direction: column; 
     }
     .bio-content { 
         width: 100%; 
         padding-left: 0; 
         padding-right: 0; 
-        margin-bottom: 30px; /* 增加間距 */
+        margin-bottom: 30px; 
     }
-    /* 縮小手機版字體，讓閱讀更舒適 */
     .bio-text {
         font-size: 1rem; 
+        line-height: 1.6;
     }
     .skills-content { 
         width: 100%; 
@@ -335,24 +335,33 @@ a:hover { color: var(--green-accent); }
         margin-top: 10px;
     }
 
-    /* [手機修正 2] 內頁 Hero 圖片上下留白減少 */
+    /* [內頁修正 1] 順序：內容在先，側邊欄(包含連結)在後 */
+    .vertical-layout-container {
+        padding-top: 60px; 
+        /* 改回 column (正常流向)，確保連結在頁面最底部 */
+        flex-direction: column; 
+    }
+
+    /* [內頁修正 2] 圖片上下留白減少 */
     .project-hero-split { 
-        min-height: auto; /* 不強制高度，依圖片比例 */
-        padding-top: 20px;  /* 從原本的 40px 減少 */
+        min-height: auto; 
+        padding-top: 20px;  
         padding-bottom: 20px; 
         margin-bottom: 30px;
     }
-    /* 調整內頁內容間距 */
     .content-wrapper {
         padding-top: 0;
-        padding-bottom: 80px;
+        padding-bottom: 60px;
     }
     
-    .vertical-layout-container {
-        padding-top: 60px; /* 手機導航欄高度補償 */
+    /* [內頁修正 3] 側邊欄間距調整，避免內容貼太近 */
+    .project-info-sidebar {
+        padding-top: 20px;
+        padding-bottom: 60px;
+        border-top: 1px solid #eee; /* 在內容和底部資訊間加一條線區隔 */
     }
 
-    /* [手機修正 3] 項目卡片變為單欄 */
+    /* 專案卡片修正 */
     .project-card { width: 100%; margin-bottom: 40px; } 
     .gallery-gutter { width: 0; }
 }
