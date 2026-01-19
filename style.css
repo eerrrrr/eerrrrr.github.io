@@ -1,7 +1,8 @@
 /* =========================================
-   全站主題色定義 & 全局基礎設定
+   1. 全站主題色定義 & 全局基礎設定 (Variables & Reset)
    ========================================= */
 :root {
+    /* 色彩系統 */
     --green-bg: #f4f9f4;       
     --green-light: #cde0cd;    
     --green-medium: #9abf9a;   
@@ -28,7 +29,7 @@
     --text-color-body: #444444;  
     --text-color-light: #999999;
 
-    /* 版面控制 */
+    /* 版面控制變數 */
     --hero-pad-left: 100px;
     --hero-pad-right: 100px;
     --content-pad-left: 300px;
@@ -41,7 +42,7 @@
     --sidebar-width: 400px;
 }
 
-/* RWD */
+/* RWD 變數調整 */
 @media (max-width: 1400px) {
     :root {
         --hero-pad-left: 100px;
@@ -76,7 +77,11 @@ body {
 a { color: #333; text-decoration: none; transition: 0.3s; }
 a:hover { color: var(--green-accent); }
 
-/* Top Bar */
+/* =========================================
+   2. 導航欄 (Navigation)
+   ========================================= */
+
+/* 首頁導航 */
 .top-bar {
     position: fixed; top: 0; left: 0; width: 100%; height: 80px; 
     z-index: 1000;
@@ -97,7 +102,23 @@ a:hover { color: var(--green-accent); }
 }
 .top-bar a.filter-btn.active, .top-bar a.filter-btn:hover { color: #000; border-bottom: 2px solid #000; padding-bottom: 3px; }
 
-/* Hero */
+/* 內頁導航 (Detail Nav) */
+.detail-nav { 
+    position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box;
+    display: flex; justify-content: space-between; align-items: center; 
+    background: rgba(255,255,255,0.98); border-bottom: 1px solid #eee; z-index: 100;
+    padding-top: 30px; padding-bottom: 30px; padding-left: 60px; padding-right: 60px;
+}
+.detail-nav-left { flex: 1; justify-content: flex-start; }
+.detail-nav-center { flex: 1; text-align: center; }
+.detail-nav-right { flex: 1; text-align: right; }
+.nav-text-link { font-weight: 600; font-size: 0.85rem; color: #333; text-transform: uppercase; letter-spacing: 1px; }
+.nav-text-link:hover { color: var(--green-accent); }
+.detail-logo { font-weight: 900; font-size: 1.2rem; }
+
+/* =========================================
+   3. 首頁 Hero 與 Bio 區域
+   ========================================= */
 .hero-poster {
     height: 100vh; 
     height: 100dvh; 
@@ -122,7 +143,7 @@ a:hover { color: var(--green-accent); }
 .hero-bottom-nav span.big-text { color: var(--green-dark); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 .scroll-indicator { color: #000; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; opacity: 1; margin-top: 8px; font-weight: 600; }
 
-/* Bio */
+/* Bio Section */
 .bio-section { 
     padding-top: 80px; padding-bottom: 80px;
     padding-left: 4%; padding-right: 2%;
@@ -141,7 +162,9 @@ a:hover { color: var(--green-accent); }
 .skill-pill { font-size: 0.85rem; color: #555; background-color: var(--skill-bg); padding: 4px 12px; border-radius: 20px; font-family: var(--font-mono); transition: 0.2s; white-space: nowrap; }
 .skill-pill:hover { background-color: var(--green-light); color: var(--green-dark); }
 
-/* Main Layout */
+/* =========================================
+   4. 首頁作品列表 (Gallery Layout)
+   ========================================= */
 .split-container { display: flex; width: 100%; min-height: 100vh; position: relative; background-color: var(--white); z-index: 10; }
 .gallery-content { 
     flex-grow: 1; display: flex; flex-direction: column;
@@ -162,7 +185,9 @@ a:hover { color: var(--green-accent); }
 .tags { margin-top: 8px; color: #999; font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.4; }
 .gallery-footer { width: 100%; margin-top: 100px; color: #999; font-size: 0.8rem; text-align: center; clear: both; padding-bottom: 40px; flex-shrink: 0; }
 
-/* Sidebar */
+/* =========================================
+   5. 側邊欄 (Sidebar)
+   ========================================= */
 .sticky-sidebar, .project-info-sidebar {
     width: var(--sidebar-width); min-width: var(--sidebar-width);
     height: 100vh; position: sticky; top: 0; right: 0;
@@ -220,24 +245,16 @@ a:hover { color: var(--green-accent); }
 .next-work-link { font-size: 0.75rem; font-weight: 900; color: #000; text-transform: uppercase; transition: color 0.3s; }
 .next-work-link:hover { color: var(--green-accent); }
 
-/* Detail Page */
+/* =========================================
+   6. 內頁詳情 (Detail Page) 與 圖片佈局
+   ========================================= */
+
 .detail-page-body { background: #fff; }
-.detail-nav { 
-    position: fixed; top: 0; left: 0; width: 100%; box-sizing: border-box;
-    display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.98); border-bottom: 1px solid #eee; z-index: 100;
-    padding-top: 30px; padding-bottom: 30px; padding-left: 60px; padding-right: 60px;
-}
-.detail-nav-left { flex: 1; justify-content: flex-start; }
-.detail-nav-center { flex: 1; text-align: center; }
-.detail-nav-right { flex: 1; text-align: right; }
-.nav-text-link { font-weight: 600; font-size: 0.85rem; color: #333; text-transform: uppercase; letter-spacing: 1px; }
-.nav-text-link:hover { color: var(--green-accent); }
-.detail-logo { font-weight: 900; font-size: 1.2rem; }
 
 .vertical-layout-container { display: flex; width: 100%; min-height: 100vh; padding-top: 80px; box-sizing: border-box; position: relative; }
 .vertical-gallery-content { flex-grow: 1; padding: 0; box-sizing: border-box; display: flex; flex-direction: column; }
 
-/* 搜尋這個 class */
+/* 專案主圖 (Hero) */
 .project-hero-split {
     width: 100%; 
     min-height: var(--hero-height); 
@@ -245,28 +262,98 @@ a:hover { color: var(--green-accent); }
     justify-content: center; 
     align-items: center; 
     box-sizing: border-box; 
-    
-    /* ↓↓↓ 修改這裡 (padding-bottom 控制圖片框內部的留白) */
     padding-top: var(--hero-pad-vertical); 
-    padding-bottom: var(--hero-pad-vertical); /* 您可以改小，例如 padding-bottom: 0px; */
-
-    /* ↓↓↓ 修改這裡 (margin-bottom 控制圖片與下方文字的距離) */
-    margin-bottom: 30px; /* 原本是 var(--hero-content-gap)，改小數字可以縮短距離 */
-    
+    padding-bottom: var(--hero-pad-vertical); 
+    margin-bottom: 30px; 
     padding-left: var(--hero-pad-left); 
     padding-right: var(--hero-pad-right);  
 }
+.project-hero-split img { 
+    max-width: 100%; max-height: 80vh; width: auto; height: auto; 
+    display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+    border-radius: 4px; object-fit: cover; object-position: center; 
+}
 
-.project-hero-split img { max-width: 100%; max-height: 80vh; width: auto; height: auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-radius: 4px; object-fit: cover; object-position: center; }
-
+/* 內容區塊 */
 .content-wrapper { box-sizing: border-box; padding-top: 0; padding-bottom: 150px; padding-left: var(--content-pad-left); padding-right: var(--content-pad-right); }
 .gallery-block { margin-bottom: 80px; width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; }
-.gallery-block img { width: 100%; height: auto; display: block; border-radius: 4px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); object-fit: cover; }
-.gallery-block.full-width img { width: 100%; object-fit: cover; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+
+/* --- [圖片佈局核心設定] --- */
+
+/* 1. 圖片統一設定：完整顯示 (Contain) + 白底 */
+.gallery-block img { 
+    width: 100%; 
+    height: 100%;           
+    display: block; 
+    border-radius: 4px; 
+    /* 核心修改：完整顯示，不裁切 */
+    object-fit: contain;     
+    object-position: center; 
+    /* 核心修改：留白處保持純白 */
+    background-color: #ffffff; 
+}
+
+/* 2. 雙欄佈局 - 鎖定 3:2 比例容器 */
+.two-col { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+    align-items: stretch;
+}
+.two-col div {
+    aspect-ratio: 3 / 2;    
+    overflow: hidden;
+    background-color: #ffffff; /* 容器也設為白底 */
+    display: flex;             /* 讓圖片在容器內絕對居中 */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 3. 三欄佈局 - 鎖定 4:3 比例容器 */
+.three-col { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 20px; 
+    align-items: stretch;
+}
+.three-col div {
+    aspect-ratio: 4 / 3;    
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 4. 四欄佈局 - 鎖定 1:1 正方形容器 */
+.four-col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.four-col div {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 5. 全寬圖片 - 維持原樣，可視情況改為 contain */
+.gallery-block.full-width img { 
+    width: 100%; 
+    height: auto;       
+    object-fit: cover; /* 全寬圖通常建議填滿，較具視覺張力 */
+    aspect-ratio: auto; 
+    background-color: transparent;
+}
+/* ------------------------------- */
+
 .caption { color: var(--text-color-light); font-size: var(--text-size-caption); margin-top: 10px; font-style: italic; text-align: left; }
 
+/* 文字區塊 */
 .text-block-row { 
     display: flex; justify-content: space-between; align-items: flex-start;
     width: 100%; max-width: 100%; margin: 80px 0 80px 0; 
@@ -293,7 +380,7 @@ a:hover { color: var(--green-accent); }
 
 
 /* =========================================
-   RWD 手機/平板 調整區域
+   7. RWD 手機/平板 調整區域
    ========================================= */
 
 @media (max-width: 1024px) {
@@ -309,13 +396,26 @@ a:hover { color: var(--green-accent); }
     .project-info-sidebar { width: 100%; min-width: auto; height: auto; position: relative; top: 0; padding: 40px 20px; }
     .project-hero-split { min-height: 50vh; padding: 40px 20px; }
     .content-wrapper { padding: 40px 20px; }
-    .two-col, .three-col { grid-template-columns: 1fr; gap: 40px; }
     .text-block-row { flex-direction: column; }
     .text-block-row h3 { width: 100%; margin-bottom: 15px; }
     .text-block-row > div { width: 100%; } 
     .detail-nav { padding: 20px; }
     .bio-section { padding: 60px 30px; }
     .sidebar-next-project-container { text-align: center; }
+    
+    /* 平板/手機上，重置圖片比例，讓它們自然顯示，避免手機上看太小 */
+    .two-col, .three-col, .four-col { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+    }
+    .two-col div, .three-col div, .four-col div {
+        aspect-ratio: auto; 
+        display: block; /* 移除 flex 居中，讓圖片自然撐開 */
+    }
+    .two-col img, .three-col img, .four-col img {
+        height: auto;
+        object-fit: cover; /* 手機版改回 cover 可能比較好看，或者維持 contain 看您喜好 */
+    }
 }
 
 @media (max-width: 768px) {
@@ -353,7 +453,6 @@ a:hover { color: var(--green-accent); }
     /* [內頁修正 1] 順序：內容在先，側邊欄(包含連結)在後 */
     .vertical-layout-container {
         padding-top: 60px; 
-        /* 改回 column (正常流向)，確保連結在頁面最底部 */
         flex-direction: column; 
     }
 
@@ -369,11 +468,11 @@ a:hover { color: var(--green-accent); }
         padding-bottom: 60px;
     }
     
-    /* [內頁修正 3] 側邊欄間距調整，避免內容貼太近 */
+    /* [內頁修正 3] 側邊欄間距調整 */
     .project-info-sidebar {
         padding-top: 20px;
         padding-bottom: 60px;
-        border-top: 1px solid #eee; /* 在內容和底部資訊間加一條線區隔 */
+        border-top: 1px solid #eee; 
     }
 
     /* 專案卡片修正 */
