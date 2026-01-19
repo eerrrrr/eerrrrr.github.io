@@ -57,9 +57,9 @@
         --hero-pad-right: 20px;
         --content-pad-left: 20px;
         --content-pad-right: 20px;
-        --hero-height: 50vh; 
-        --hero-pad-vertical: 40px; 
-        --hero-content-gap: 40px;
+        --hero-height: 30vh; /* 手機版 Hero 高度降低 */
+        --hero-pad-vertical: 20px; 
+        --hero-content-gap: 30px;
     }
 }
 
@@ -99,7 +99,9 @@ a:hover { color: var(--green-accent); }
 
 /* Hero */
 .hero-poster {
-    height: 100vh; display: flex; justify-content: center; align-items: center;
+    height: 100vh; /* 使用 dvh 支援新瀏覽器，fallback 100vh */
+    height: 100dvh; 
+    display: flex; justify-content: center; align-items: center;
     position: relative; background: var(--green-bg); z-index: 20; overflow: hidden;
 }
 #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; display: block; }
@@ -282,30 +284,75 @@ a:hover { color: var(--green-accent); }
 @media (max-width: 1024px) {
     .top-bar { padding: 20px 20px; }
     .hero-bottom-nav { padding-left: 20px; padding-right: 20px; }
+    
+    /* 1024px 平板模式仍保持原樣，或稍微調整 padding */
     .bio-content { padding-left: 30px; padding-right: 30px; }
     .skills-content { width: 100%; min-width: auto; padding-left: 30px; padding-right: 30px; }
+    
     .gallery-content { padding-left: 5%; padding-right: 5%; }
     .split-container { flex-direction: column-reverse; }
     .vertical-layout-container { flex-direction: column-reverse; padding-top: 60px; }
     .sticky-sidebar { width: 100%; min-width: auto; height: auto; position: relative; padding: 40px 40px; border-left: none; }
     .sidebar-scroll-content { padding-left: 0; padding-right: 0; }
     .project-info-sidebar { width: 100%; min-width: auto; height: auto; position: relative; top: 0; padding: 40px 20px; }
+    
+    /* 平板時暫時保持高度 */
     .project-hero-split { min-height: 50vh; padding: 40px 20px; }
     .content-wrapper { padding: 40px 20px; }
     .two-col, .three-col { grid-template-columns: 1fr; gap: 40px; }
     
     .text-block-row { flex-direction: column; }
     .text-block-row h3 { width: 100%; margin-bottom: 15px; }
-    .text-block-row > div { width: 100%; } /* 手機版文字全寬 */
+    .text-block-row > div { width: 100%; } 
     
     .detail-nav { padding: 20px; }
     .bio-section { padding: 60px 30px; }
     .sidebar-next-project-container { text-align: center; }
 }
+
 @media (max-width: 768px) {
     .poster-content h1 { font-size: 2.5rem; letter-spacing: -1px; }
-}
-@media (max-width: 600px) {
+
+    /* [手機修正 1] Bio 和 Skills 垂直堆疊，避免擠壓 */
+    .bio-grid { 
+        flex-direction: column; 
+    }
+    .bio-content { 
+        width: 100%; 
+        padding-left: 0; 
+        padding-right: 0; 
+        margin-bottom: 30px; /* 增加間距 */
+    }
+    /* 縮小手機版字體，讓閱讀更舒適 */
+    .bio-text {
+        font-size: 1rem; 
+    }
+    .skills-content { 
+        width: 100%; 
+        padding-left: 0 !important; 
+        padding-right: 0 !important; 
+        padding-top: 0;
+        margin-top: 10px;
+    }
+
+    /* [手機修正 2] 內頁 Hero 圖片上下留白減少 */
+    .project-hero-split { 
+        min-height: auto; /* 不強制高度，依圖片比例 */
+        padding-top: 20px;  /* 從原本的 40px 減少 */
+        padding-bottom: 20px; 
+        margin-bottom: 30px;
+    }
+    /* 調整內頁內容間距 */
+    .content-wrapper {
+        padding-top: 0;
+        padding-bottom: 80px;
+    }
+    
+    .vertical-layout-container {
+        padding-top: 60px; /* 手機導航欄高度補償 */
+    }
+
+    /* [手機修正 3] 項目卡片變為單欄 */
     .project-card { width: 100%; margin-bottom: 40px; } 
     .gallery-gutter { width: 0; }
 }
