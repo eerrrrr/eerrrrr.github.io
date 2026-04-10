@@ -95,7 +95,7 @@ a:hover { color: var(--green-accent); }
 .top-bar.hidden-nav { transform: translateY(-100%); opacity: 0; }
 .nav-align-left { display: flex; align-items: center; }
 .nav-logo { font-weight: 900; font-size: 1.2rem; color: #000; text-transform: uppercase; margin-right: 0; }
-.nav-align-right { display: flex; align-items: center; }
+.nav-align-right { display: flex; align-items: center; justify-content: flex-end; gap: 36px; }
 .top-bar a.filter-btn { 
     color: #888; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; 
     letter-spacing: 1px; cursor: pointer; margin-left: 30px; 
@@ -159,22 +159,34 @@ a:hover { color: var(--green-accent); }
 .skills-content { width: var(--sidebar-width); min-width: var(--sidebar-width); padding-top: 10px; padding-left: 40px; padding-right: 40px; }
 .skills-header { font-size: 0.85rem; font-weight: 700; color: #999; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
 .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.skill-pill { font-size: 0.85rem; color: #555; background-color: var(--skill-bg); padding: 4px 12px; border-radius: 20px; font-family: var(--font-mono); transition: 0.2s; white-space: nowrap; }
+.skill-pill { font-size: 0.85rem; color: #222; background-color: var(--skill-bg); padding: 4px 12px; border-radius: 20px; font-family: var(--font-mono); transition: 0.2s; white-space: nowrap; }
 .skill-pill:hover { background-color: var(--green-light); color: var(--green-dark); }
 
 /* =========================================
    4. 首頁作品列表 (Gallery Layout)
    ========================================= */
 .split-container { display: flex; width: 100%; min-height: 100vh; position: relative; background-color: var(--white); z-index: 10; }
-.gallery-content { 
+.gallery-content {
     flex-grow: 1; display: flex; flex-direction: column;
-    padding-top: 80px; padding-bottom: 0; 
-    padding-left: 9%; padding-right: 1%;  
+    padding-top: 80px; padding-bottom: 0;
+    padding-left: 9%; padding-right: 1%;
     position: relative;
 }
+.type-filter-pill,
+.top-bar .type-filter-pill {
+    font-family: var(--font-base); font-size: 1.05rem; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: #aaa; cursor: pointer; transition: color 0.2s ease;
+    background: transparent; white-space: nowrap; text-decoration: none;
+    line-height: 1;
+}
+.type-filter-pill:hover,
+.top-bar .type-filter-pill:hover { color: #000; }
+.type-filter-pill.active,
+.top-bar .type-filter-pill.active { color: #000; }
 #masonry-container { width: 100%; flex-grow: 1; display: block; }
 .gallery-gutter { width: 3%; } 
-.project-card { width: 29%; margin-bottom: 60px; display: block; cursor: pointer; }
+.project-card { width: 29%; margin-bottom: 60px; display: block; cursor: pointer; transition: opacity 0.35s ease; }
 .project-card.hidden { display: none; } 
 .image-box { width: 100%; height: auto; background: transparent; overflow: hidden; display: block; border-radius: 4px; margin-bottom: 15px; aspect-ratio: auto; }
 .image-box img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
