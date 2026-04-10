@@ -42,7 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     card.style.transform = '';
                     card.style.opacity = '1';
                 });
-            }, 1400);
+
+                // Apply filter from clean path (/arch) or fallback query (?f=arch)
+                const shortToFull = { arch: 'architecture', furn: 'furniture', '3d': '3dprinting', vr: 'vr', aigc: 'aigc' };
+                const pathCode = window.location.pathname.replace(/^\//, '').replace('index.html', '');
+                const queryCode = new URLSearchParams(window.location.search).get('f');
+                const code = (pathCode && shortToFull[pathCode]) ? pathCode : queryCode;
+                if (code && shortToFull[code]) {
+                    filterByType(shortToFull[code]);
+                }
+            }, 1500);
         });
     } else {
         if (typeof AOS !== 'undefined') {
@@ -103,7 +112,19 @@ function applyFilter(testFn, activeType, activeValue) {
             }
         });
 
-        if (msnry) msnry.layout();
+        // Special order: swap Single-family and Tea Room for architecture filter only
+        const container = document.getElementById('masonry-container');
+        const singleFamily = container.querySelector('a[href="Single-family-home.html"]');
+        const teaRoom = container.querySelector('a[href="tearoom.html"]');
+        if (singleFamily && teaRoom) {
+            if (activeValue === 'architecture') {
+                container.insertBefore(singleFamily, teaRoom);
+            } else {
+                container.insertBefore(teaRoom, singleFamily);
+            }
+        }
+
+        if (msnry) { msnry.reloadItems(); msnry.layout(); }
 
         // Phase 3: fade visible items back in
         setTimeout(() => {
@@ -162,6 +183,11 @@ function updateActiveButton(type, value) {
     } else if (type === 'type') {
         const activeBtns = document.querySelectorAll(`[onclick*="filterByType('${value}')"]`);
         activeBtns.forEach(btn => btn.classList.add('active'));
+
+        // Show clean URL in address bar (e.g. /arch, /aigc)
+        const fullToShort = { architecture: 'arch', furniture: 'furn', '3dprinting': '3d', vr: 'vr', aigc: 'aigc' };
+        const shortCode = fullToShort[value];
+        history.replaceState({}, '', value === 'all' ? '/' : '/' + shortCode);
     }
 }
 
