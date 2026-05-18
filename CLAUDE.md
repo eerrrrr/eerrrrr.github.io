@@ -23,9 +23,6 @@ be applied to the primary repo (and vice versa). See section 11.
 - CDN libraries (via `unpkg`):
   - `aos@2.3.1` — scroll-triggered animations
   - `imagesloaded@5` and `masonry-layout@4` — gallery layout on index
-- CDN libraries (via `unpkg`):
-  - `aos@2.3.1` — scroll-triggered animations
-  - `imagesloaded@5` and `masonry-layout@4` — gallery layout on index
 - Optional WebGL "Liquid Chrome" hero shader in `script.js` (currently
   inactive — see section 9 risk #2).
 - No package manager, no `package.json`, no node_modules. Nothing to
