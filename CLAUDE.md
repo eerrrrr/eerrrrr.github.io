@@ -9,15 +9,20 @@ A single-page-plus-detail-pages **static portfolio website** for Erin
 Wong (architectural designer). Deployed on GitHub Pages at
 `https://eerrrrr.github.io/`. The site doubles as an online CV.
 
-This repo (`eerrrrr.github.io`) is the **BACKUP** copy. The primary
-working copy is at `E:\my-portfolio-website\eerrrrr.portfolio.github.io`.
-Whenever you change website content here, the same change must also be
-applied to the primary repo (and vice versa). See section 11.
+This repo (`eerrrrr.github.io`) is the **BACKUP** copy and the one
+wired to GitHub Pages — pushes to its `main` branch publish the
+public site within ~30s. The **PRIMARY / source-of-truth** working
+copy is at `E:\my-portfolio-website\eerrrrr.portfolio.github.io`.
+Whenever you change website content here, the same change must also
+be applied to the primary repo (and vice versa). See section 11.
 
 ## 2. Tech stack
 
 - Plain **HTML5 + CSS3 + vanilla JS** — no framework, no build step.
-- **GitHub Pages** for hosting (push to `main` → live).
+- **GitHub Pages** for hosting (push this repo's `main` → live).
+- CDN libraries (via `unpkg`):
+  - `aos@2.3.1` — scroll-triggered animations
+  - `imagesloaded@5` and `masonry-layout@4` — gallery layout on index
 - CDN libraries (via `unpkg`):
   - `aos@2.3.1` — scroll-triggered animations
   - `imagesloaded@5` and `masonry-layout@4` — gallery layout on index
@@ -145,7 +150,8 @@ Remote: `https://github.com/eerrrrr/eerrrrr.github.io.git`.
    `commune.html:62, 65` use Unicode curly quotes (`”`) around the
    `data-i18n` attribute value. Those keys never resolve. Fix to ASCII
    double quotes (`"`) when editing those files. See
-   `docs/WEBSITE_AUDIT.md`.
+   `docs/WEBSITE_AUDIT.md`. The same bug exists in the backup repo —
+   fix both copies in the same pass.
 2. **Dead WebGL hero path** — `script.js` calls `initLiquidChrome()`
    which looks for `<canvas id="hero-canvas">`. The current
    `index.html` uses an mp4 hero video instead, so the function exits
@@ -192,15 +198,15 @@ correction must be applied to **both** repos:
 
 - When the user fixes something in the **primary**
   (`eerrrrr.portfolio.github.io`), apply the **same** correction in
-  the **backup** (`eerrrrr.github.io`) — same file, same lines, same
-  text.
-- When the user fixes something in the **backup**, apply the **same**
-  correction in the **primary**.
+  the **backup** (this repo) — same file, same lines, same text.
+- When the user fixes something in the **backup** (this repo), apply
+  the **same** correction in the **primary**.
 - This applies to: HTML text, `i18n.js` translations, `style.css`,
   `script.js`, image swaps, new project additions — anything that
   affects what visitors see or how the site behaves.
 - Documentation files (`CLAUDE.md`, `README_OTHER_AI.md`,
-  `docs/WEBSITE_AUDIT.md`) should also be kept in sync between repos.
+  `docs/WEBSITE_AUDIT.md`) should also be kept in sync between repos,
+  with their primary/backup framing adjusted per side.
 
 Procedure after every edit:
 
@@ -209,6 +215,12 @@ Procedure after every edit:
    same change).
 3. Verify both copies match (diff if unsure).
 4. Commit & push each repo independently.
+
+Note: this backup repo's push is what updates the public site at
+`https://eerrrrr.github.io/`. The primary repo's push is for
+source-of-truth bookkeeping only. Pushing only the primary will leave
+the live site stale; pushing only this backup will leave the source
+of truth out of date.
 
 If the user asks for "a portfolio fix", default to applying in both
 repos. If the user explicitly says "only here" or "only the backup"
@@ -241,7 +253,31 @@ can be reconciled later.
   intentional for this no-framework site.
 - Change `<html lang="en">` to a non-English value.
 
-## 14. Related external docs (READ THESE before i18n work)
+## 14. JSON-first migration (in progress as of 2026-05-18)
+
+A reference data layer was introduced under `data/`:
+
+- `data/projects.json` — all 13 projects extracted from `index.html`,
+  the detail pages, and `i18n.js` (EN section).
+- `data/site-structure.json` — snapshot of the site shape and
+  fragile parts.
+
+**Critical rule for Claude in current and future sessions:**
+
+- The **live website does NOT consume `data/projects.json`.** It is
+  pure documentation today. Editing the JSON will not change anything
+  visitors see. To update what visitors see, the existing HTML /
+  `i18n.js` files must still be edited (and the JSON updated to match,
+  to keep them in sync).
+- Any task that says "update the JSON" must clarify whether the user
+  also wants the corresponding HTML / `i18n.js` updates. The two are
+  not yet linked by code.
+- Do NOT write a generator, build step, or runtime fetch of the JSON
+  without an explicit user request. The migration plan in
+  [docs/JSON_FIRST_MIGRATION_PLAN.md](docs/JSON_FIRST_MIGRATION_PLAN.md)
+  spells out why and what comes next.
+
+## 15. Related external docs (READ THESE before i18n work)
 
 A parallel documentation folder exists at
 `E:\my-portfolio-website\portfolio support document\`. It predates
@@ -272,6 +308,8 @@ match, not the other way around.
 ---
 
 **For deeper context:** see [README_OTHER_AI.md](README_OTHER_AI.md)
-(quick orientation for any AI assistant) and
+(quick orientation for any AI assistant),
 [docs/WEBSITE_AUDIT.md](docs/WEBSITE_AUDIT.md) (current issues and
-improvement ideas).
+improvement ideas), and
+[docs/JSON_FIRST_MIGRATION_PLAN.md](docs/JSON_FIRST_MIGRATION_PLAN.md)
+(the JSON-first migration approach and what comes next).
