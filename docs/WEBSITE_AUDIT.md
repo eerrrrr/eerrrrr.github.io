@@ -5,7 +5,14 @@
 > Nothing here has been fixed; it is a report only.
 
 _Audit date: 2026-05-18_
-_Repo: `eerrrrr.github.io` (backup copy)_
+_Repo: `eerrrrr.portfolio.github.io` (PRIMARY / source-of-truth copy)_
+
+This audit also applies to the backup repo at
+`E:\my-portfolio-website\eerrrrr.github.io` — the two repos were
+verified byte-identical at audit time for `index.html`, `style.css`,
+`script.js`, `i18n.js`, `bamboo.html`, and `commune.html`. Every
+finding below was confirmed present in both repos. Fix in both repos
+in the same pass per the sync rule (CLAUDE.md § 11).
 
 ---
 
@@ -23,8 +30,11 @@ _Repo: `eerrrrr.github.io` (backup copy)_
 - **Repo size on disk**: ~680 MB, dominated by:
   - 153 `.jpg` (~324 MB)
   - 49 `.png` (~167 MB)
-  - 4 `.mp4` (~190 MB, mostly `main page/hero.mp4`)
-- **Hosting**: GitHub Pages, `main` branch deploys directly.
+  - 4 `.mp4` (~190 MB, mostly the two large MP4s under `ruach/`)
+- **Hosting**: The backup repo (`eerrrrr.github.io`) is the GitHub
+  Pages-deployed copy at `https://eerrrrr.github.io/`. This primary
+  repo is the source-of-truth working copy; pushes here do not
+  themselves update the live site.
 
 ---
 
@@ -33,6 +43,7 @@ _Repo: `eerrrrr.github.io` (backup copy)_
 ### 2.1 [HIGH] Curly-quote i18n attribute bug
 
 **Files**: `bamboo.html` lines 62, 65; `commune.html` lines 62, 65.
+**Confirmed in both primary and backup repos.**
 
 The `data-i18n` attribute is wrapped in Unicode curly quotes (`”`)
 instead of ASCII double quotes (`"`):
@@ -46,7 +57,8 @@ these elements, so the two paragraphs never translate. They display
 the inline English fallback in every language.
 
 **Fix**: replace the curly quotes with ASCII `"`. Eight characters
-total across two files.
+total across two files. Must be applied in **both** primary and
+backup.
 
 ### 2.2 [LOW] Dead WebGL hero code path
 
@@ -57,7 +69,7 @@ returns immediately and the WebGL shader never runs.
 
 **Status**: not a user-visible bug. Either remove the dead code or add
 the canvas back. Per `CLAUDE.md`, this is intentional pending future
-revival of the shader hero.
+revival of the shader hero. Identical in both repos.
 
 ### 2.3 [LOW] Detail-page card label mismatch
 
@@ -89,9 +101,11 @@ a retraction so future audits don't re-flag it.
 
 ### 3.1 [HIGH] Heavy unoptimised media
 
-- `main page/hero.mp4` is ~180 MB — likely a few-second autoplay loop.
-  Re-encode at lower bitrate or use a shorter loop; 2-5 MB is enough
-  for a hero video.
+- `main page/hero.mp4` is actually ~828 KB (already small). The
+  initial audit incorrectly listed it at ~180 MB; corrected on
+  2026-05-18 after a direct measurement. The genuinely heavy MP4s
+  are `ruach/hero.mp4` and `ruach/Media2.mp4` at ~90 MB each — see
+  [PERFORMANCE_OPTIMIZATION_PLAN.md](PERFORMANCE_OPTIMIZATION_PLAN.md).
 - Several project PNGs are likely 5-10 MB each. PNG is the wrong
   format for photography or rendered images — convert to JPEG (quality
   82-88) or WebP.
@@ -130,8 +144,10 @@ load with no `<link rel="preconnect">` or SRI hash. Adding
 - ⚠️ No `sitemap.xml` and no `robots.txt`. A 14-page static site
   benefits from both.
 - ⚠️ No `<link rel="canonical">`. With both primary and backup repos
-  live on github.io, search engines may see duplicate content. Set
-  canonical to whichever domain you treat as primary.
+  living side by side, search engines may eventually see duplicate
+  content if both ever go public. Set canonical to
+  `https://eerrrrr.github.io/` (the backup, which is the deployed
+  one).
 - ⚠️ Project cards link with relative paths — fine — but mixed
   casing in filenames (`Single-family-home.html`,
   `Study-group-Works.html`) can cause case-sensitivity issues on
@@ -181,42 +197,49 @@ load with no `<link rel="preconnect">` or SRI hash. Adding
   mix English, Traditional Chinese, and Simplified Chinese comments.
   Not a bug, but harder for collaborators / AI to skim. Pick one and
   stick with it.
-- **Commit messages**: recent log shows `we`, `wde`, `2s`, `sd`,
-  `zx`, `5g` — placeholder messages. Future you (and any AI
-  reviewing history) won't be able to find anything. Suggested:
-  short imperative + scope, e.g. `bamboo: fix curly quotes in i18n
+- **Commit messages**: recent log in this repo shows `we`, `vb`,
+  `1a`, `z` — placeholder messages. Future you (and any AI reviewing
+  history) won't be able to find anything. Suggested: short
+  imperative + scope, e.g. `bamboo: fix curly quotes in i18n
   attributes`.
 - **No CHANGELOG / no release tags** — small project, but for the
   CV-doubling role of this site, tagging stable snapshots before big
   redesigns is cheap insurance.
+- **Two-repo sync overhead** — every content edit currently requires
+  manual duplication into the backup. A small `robocopy` or rsync
+  script (excluding `.git/`) run after each edit would eliminate
+  drift risk. Worth setting up if edit cadence is high.
 
 ---
 
 ## 7. Suggested future improvements
 
 **Quick wins (1-2 hours each)**:
-1. Fix curly-quote i18n bug in `bamboo.html` and `commune.html`.
+1. Fix curly-quote i18n bug in `bamboo.html` and `commune.html`
+   (apply in both repos).
 2. Add `loading="lazy"` to gallery images.
 3. Add `sitemap.xml`, `robots.txt`, `<link rel="canonical">`.
 4. Re-encode `hero.mp4` to <5 MB.
 5. Add `rel="preconnect"` to `unpkg.com`.
 6. ~~Sync `<html lang>` with the language switcher.~~ (Already done —
    see retracted 2.4.)
+7. Write a small primary→backup sync script to eliminate the manual
+   two-repo overhead.
 
 **Medium (half a day each)**:
-7. Convert PNG photography to JPEG/WebP — expect ~80 MB savings.
-8. Add an `aria-pressed` / `aria-label` pass for keyboard / SR users.
-9. Write a small Node or Python validator that diffs key sets across
-   the 5 language objects in `i18n.js`.
-10. Set up GitHub Actions to compress newly-added images on push.
+8. Convert PNG photography to JPEG/WebP — expect ~80 MB savings.
+9. Add an `aria-pressed` / `aria-label` pass for keyboard / SR users.
+10. Write a small Node or Python validator that diffs key sets across
+    the 5 language objects in `i18n.js`.
+11. Set up GitHub Actions to compress newly-added images on push.
 
 **Larger (multi-day)**:
-11. Split `i18n.js` into per-page files loaded on demand — useful only
+12. Split `i18n.js` into per-page files loaded on demand — useful only
     if dictionary grows beyond ~500 KB.
-12. Migrate to a static-site generator (Eleventy, Astro) for shared
+13. Migrate to a static-site generator (Eleventy, Astro) for shared
     layouts and prev/next link generation. Big rewrite — only do this
     if maintenance pain becomes real.
-13. Add a tiny client-side search for project tags.
+14. Add a tiny client-side search for project tags.
 
 ---
 
